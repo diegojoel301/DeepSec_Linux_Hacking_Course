@@ -1,0 +1,1 @@
+curl -v -s -X POST "http://172.17.0.2/dvwa/login.php" -d "username=admin&password=password&Login=Login" -H "Cookie: security=high; PHPSESSID=<cualquiera>" -L
