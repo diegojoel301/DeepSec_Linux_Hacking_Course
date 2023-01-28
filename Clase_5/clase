@@ -1,4 +1,4 @@
-ara escaneo de puertos:
+Para escaneo de puertos:
 
 sudo nmap -p- --open -sS --min-rate=5000 -vvv 172.17.0.2
 
