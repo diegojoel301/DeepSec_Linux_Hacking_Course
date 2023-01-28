@@ -1,0 +1,31 @@
+ara escaneo de puertos:
+
+sudo nmap -p- --open -sS --min-rate=5000 -vvv 172.17.0.2
+
+        -p-: todos los puertos
+        --open: puertos abiertos
+        --min-rate=5000: envio de 5000 paquetes por segundo (tasa de paquetes por segundo)
+        -vvv: verbose (detallismo)
+
+Si se desea ver aquellos puertos los cuales esten filtrados:
+
+sudo nmap -p- -sS --min-rate=5000 -vvv 172.17.0.2
+
+FTP -> File Transfer Protocolo (Layer 7)
+Puerto de preferencia: 21 TCP
+Para proteger un servidor FTP:
+        - Implementacion de SSL, para evitar que terceros vean el trafico entre cliente-servidor en texto claro
+        - Actualizar la version de FTP
+
+SSH -> Secure SHell (Layer 7)
+Puerto de preferencia: 22 TCP
+        ssh <user>@<host>
+
+
+Para conexiones ya desde ipv6
+        ssh <user>@<host ipv6>%<interface
+
+Para laboratorio metasploitable bypassing ssh firewall
+
+        chown -R msfadmin:www-data .ssh
+        chmod a+rx -R .ssh
