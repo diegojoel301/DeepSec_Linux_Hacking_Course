@@ -1,0 +1,52 @@
+-- - Create
+CREATE TABLE CLIENTE(
+    id INT NOT NULL,
+    nombre VARCHAR(50),  
+
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE PEDIDO(
+    id_pedido INT NOT NULL,
+    fecha DATE,
+    id_cliente INT,
+
+    PRIMARY KEY(id_pedido),
+
+    FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id)
+);
+
+-- Asignacion de datos
+
+INSERT INTO CLIENTE(id, nombre) VALUES (25243, "Juanito Perez");
+INSERT INTO CLIENTE(id, nombre) VALUES (35243, "Karen Ramirez");
+INSERT INTO CLIENTE(id, nombre) VALUES (45262, "Jose Mendoza");
+INSERT INTO CLIENTE(id, nombre) VALUES (65443, "Jose Fernandez");
+INSERT INTO CLIENTE(id, nombre) VALUES (23241, "Pepe Perez");
+
+INSERT INTO PEDIDO(id_pedido, fecha, id_cliente) VALUES (736545, '2022-11-11', 45262);
+INSERT INTO PEDIDO(id_pedido, fecha, id_cliente) VALUES (847465, '2022-12-11', 23241);
+INSERT INTO PEDIDO(id_pedido, fecha, id_cliente) VALUES (583764, '2022-12-24', 45262);
+
+-- Update
+
+UPDATE PEDIDO SET fecha = '2022-12-13' WHERE id_pedido = 736545 OR id_pedido = 847465
+
+-- - Delete
+
+DELETE FROM PEDIDO WHERE fecha LIKE '2022-12-13'
+
+-- - Se desea obtener los nombres de los clientes y la fecha de sus pedidos
+
+SELECT CLIENTE.nombre, PEDIDO.fecha FROM CLIENTE, PEDIDO WHERE CLIENTE.id = PEDIDO.id_cliente;
+
+-- Con alias
+
+SELECT xd.nombre, xs.fecha FROM CLIENTE xd, PEDIDO xs WHERE xd.id = xs.id_cliente;
+
+
+
+SELECT user_id, first_name, last_name FROM users WHERE user_id = '1'-- -';
+
+
+-- - mysql -h localhost -u root -p dvwa -e "SELECT user_id, first_name, last_name FROM users WHERE user_id = '''"
